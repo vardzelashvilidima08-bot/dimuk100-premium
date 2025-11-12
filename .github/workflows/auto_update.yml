@@ -2,7 +2,7 @@ name: Auto Update Playlist
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # ყოველ 6 საათში ერთხელ
+    - cron: "0 * * * *"
   workflow_dispatch:        # შენთვის ხელით გაშვების შესაძლებლობა
 
 jobs:
