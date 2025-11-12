@@ -23,4 +23,5 @@ jobs:
           pip install requests
 
       - name: Run update script
+        working-directory: ./
         run: python update_playlist.py
