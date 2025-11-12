@@ -2,8 +2,8 @@ name: Auto Update Playlist
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # განახლება ყოველ 6 საათში
-  workflow_dispatch:        # ხელით გაშვებაც შეიძლება
+    - cron: "0 */6 * * *"  # ყოველი 6 საათის შემდეგ ავტომატურად
+  workflow_dispatch:        # ხელით გასაშვებად
 
 jobs:
   update:
@@ -19,15 +19,8 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          pip install requests
 
       - name: Run update script
         run: python update_playlist.py
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add playlist.m3u
-          git commit -m "Auto update playlist"
-          git push
