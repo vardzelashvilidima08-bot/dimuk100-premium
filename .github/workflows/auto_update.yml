@@ -2,8 +2,8 @@ name: Auto Update Playlist
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # ყოველი 6 საათის შემდეგ ავტომატურად
-  workflow_dispatch:        # ხელით გასაშვებად
+    - cron: "0 */6 * * *"  # ყოველი 6 საათის შემდეგ ავტომატურად გაეშვება
+  workflow_dispatch:        # საშუალებას გაძლევს ხელითაც გაუშვა
 
 jobs:
   update:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install requests
+          pip install beautifulsoup4
 
       - name: Run update script
-        working-directory: ./
         run: python update_playlist.py
