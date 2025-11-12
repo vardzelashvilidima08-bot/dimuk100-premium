@@ -2,26 +2,37 @@ name: Auto Update Playlist
 
 on:
   schedule:
-    - cron: "0 */6 * * *"  # ყოველ 6 საათში ერთხელ ავტომატური განახლება
-  workflow_dispatch:        # ხელით გასაშვებად
+    - cron: "0 */6 * * *"   # ყოველ 6 საათში ერთხელ
+  workflow_dispatch:        # შენთვის ხელით გაშვების შესაძლებლობა
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
-          pip install requests
-          pip install beautifulsoup4
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
 
       - name: Run update script
         run: python update_playlist.py
+
+      - name: Commit updated playlist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "dimuk100-bot"
+          git config --global user.email "bot@dimuk100.com"
+          git add dimuk100.m3u
+          git commit -m "Auto update playlist: $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "No changes"
+          git push
