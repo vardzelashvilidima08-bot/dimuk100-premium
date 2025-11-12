@@ -37,8 +37,7 @@ https://streaming.cdn77.com/rustavi2/index.m3u8
 https://tv.cdn.xsg.ge/live/mtavari/index.m3u8
 
 #EXTINF:-1 group-title="შემეცნებითი" tvg-name="NASA TV", NASA Live Stream
-https://nasa-hls.akamaized.net/hls/live/253503/NASA-HD/master.m3u8
-
+http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
 #───────────────────────────────────────────────
 # 🔄 განახლების ბმული / Update link
 # https://dimuk100-premium.link/playlist.m3u
